@@ -1,0 +1,3 @@
+[submodule "multi-agent-ale"]
+	path = multi-agent-ale
+	url = https://github.com/liuzhaoze/Multi-Agent-ALE.git
