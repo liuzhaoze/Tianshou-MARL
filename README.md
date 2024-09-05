@@ -55,3 +55,9 @@ Install TensorBoard and [WandB](https://wandb.ai/home) for logging:
 pip install tensorboard
 pip install wandb
 ```
+
+## Usage
+
+```bash
+python tianshou-tictactoe.py --watch --watch-episode-num 3 --learned-go-first
+```

@@ -1,5 +1,4 @@
 import argparse
-import logging
 import os
 from copy import deepcopy
 from datetime import datetime
@@ -162,17 +161,17 @@ def get_policy(
     if use_best:
         path = os.path.join(args.log_path, "best.pth")
         policy_learn.load_state_dict(torch.load(path, map_location=args.device))
-        logging.info(f"Load best policy from {path}")
+        print(f"Load best policy from {path}")
 
     if policy_opponent is None:
         if args.load_opponent:
             path = os.path.join(args.log_path, "opponent.pth")
             policy_opponent = deepcopy(policy_learn)
             policy_opponent.load_state_dict(torch.load(path))
-            logging.info(f"Load opponent policy from {path}")
+            print(f"Load opponent policy from {path}")
         else:
             policy_opponent = RandomPolicy(action_space=args.action_space)
-            logging.info("No opponent policy given, use random policy.")
+            print("No opponent policy given, use random policy.")
 
     if args.learned_go_first:
         policies = [policy_learn, policy_opponent]
@@ -247,7 +246,7 @@ def train(
         path = os.path.join(args.log_path, "best.pth")
         agent_id = 0 if args.learned_go_first else 1
         torch.save(ma_policy.policies[agents[agent_id]].state_dict(), path)
-        logging.info(f"Save best policy to {path}")
+        print(f"Save best policy to {path}")
 
     def reward_metric(rewards: np.ndarray) -> np.ndarray:
         agent_id = 0 if args.learned_go_first else 1
@@ -303,8 +302,6 @@ def watch(
 
 
 if __name__ == "__main__":
-    logging.basicConfig(level=logging.INFO)
-
     args = get_args()
     args = configure_log_path(args)
     args = add_env_info(args)
