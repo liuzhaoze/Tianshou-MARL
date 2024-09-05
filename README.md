@@ -58,6 +58,9 @@ pip install wandb
 
 ## Usage
 
+### [Tic Tac Toe](https://pettingzoo.farama.org/environments/classic/tictactoe/)
+
 ```bash
+python tianshou-tictactoe.py --watch --watch-episode-num 3
 python tianshou-tictactoe.py --watch --watch-episode-num 3 --learned-go-first
 ```
