@@ -2,6 +2,12 @@
 
 Tianshou demos for multi-agent reinforcement learning.
 
+Use the following command to clone the repository with submodules:
+
+```bash
+git clone --recurse-submodules --shallow-submodules --depth 1 https://github.com/liuzhaoze/Tianshou-MARL.git
+```
+
 ## Python Environment Setup
 
 Highly recommend to setup the environment on Ubuntu/macOS.
@@ -25,6 +31,7 @@ conda activate tianshou
 Install Tianshou:
 
 ```bash
+# clone the Tianshou repository outside of this repository directory
 git clone --branch v1.1.0 --depth 1 https://github.com/thu-ml/tianshou.git
 cd tianshou
 pip install poetry
@@ -39,6 +46,7 @@ poetry install
 Install `multi-agent-ale`:
 
 ```bash
+# execute the following command after switching the working path to this repository.
 cd multi-agent-ale
 python setup.py install
 ```
@@ -46,6 +54,7 @@ python setup.py install
 Install PettingZoo environments:
 
 ```bash
+# the file `constraints.txt` is located in the root directory of this repository
 pip install 'pettingzoo[all]==1.24.2' --constraint constraints.txt
 ```
 
