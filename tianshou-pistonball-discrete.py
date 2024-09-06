@@ -82,8 +82,10 @@ def get_args() -> argparse.Namespace:
 
     # watch
     parser.add_argument("--watch", action="store_true")
+    parser.add_argument("--watch-only", action="store_true")
     parser.add_argument("--watch-episode-num", type=int, default=1)
     parser.add_argument("--render-fps", type=int, default=60)
+    parser.add_argument("--model-path", type=str, default=None)
 
     return parser.parse_known_args()[0]
 
@@ -147,7 +149,7 @@ def get_policy(
             optimizers.append(optim)
 
     if use_best:
-        path = os.path.join(args.log_path, "best.pth")
+        path = args.model_path or os.path.join(args.log_path, "best.pth")
         parameters = torch.load(path, map_location=args.device)
         [p.load_state_dict(parameters[a]) for a, p in zip(args.agents, policies)]
         print(f"Load best policy from {path}")
@@ -265,7 +267,10 @@ if __name__ == "__main__":
     args = configure_log_path(args)
     args = add_env_info(args)
 
-    result, ma_policy = train(args)
+    if not args.watch_only:
+        result, ma_policy = train(args)
+    else:
+        ma_policy, _ = get_policy(args)
 
-    if args.watch:
+    if args.watch or args.watch_only:
         result = watch(args, list(ma_policy.policies.values()), use_best=True)

@@ -64,3 +64,10 @@ pip install wandb
 python tianshou-tictactoe.py --watch --watch-episode-num 3
 python tianshou-tictactoe.py --watch --watch-episode-num 3 --learned-go-first
 ```
+
+### [Pistonball](https://pettingzoo.farama.org/environments/butterfly/pistonball/)
+
+```bash
+# load a trained model and watch the game without training
+python tianshou-pistonball-discrete.py --watch-only --watch-episode-num 5 --piston-num 3 --model-path ./path/to/trained/model.pth
+```
