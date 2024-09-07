@@ -76,7 +76,17 @@ python tianshou-tictactoe.py --watch --watch-episode-num 3 --learned-go-first
 
 ### [Pistonball](https://pettingzoo.farama.org/environments/butterfly/pistonball/)
 
+The default parameters are just for demonstration purposes. If you want to train a model that can complete the task, you can try the parameters below:
+
+```bash
+python tianshou-pistonball-discrete.py --piston-num 5 --num-epochs 2000 --buffer-size 100000 --step-per-epoch 1000 --batch-size 128
+```
+
+It requires about 32GB of memory and 1500 MB of video memory to train a model with the above settings.
+
+Use the following command to watch the game with a trained model:
+
 ```bash
 # load a trained model and watch the game without training
-python tianshou-pistonball-discrete.py --watch-only --watch-episode-num 5 --piston-num 3 --model-path ./path/to/trained/model.pth
+python tianshou-pistonball-discrete.py --piston-num 5 --watch-only --watch-episode-num 5 --model-path ./path/to/trained/model.pth
 ```
