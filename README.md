@@ -89,4 +89,7 @@ Use the following command to watch the game with a trained model:
 ```bash
 # load a trained model and watch the game without training
 python tianshou-pistonball-discrete.py --piston-num 5 --watch-only --watch-episode-num 5 --model-path ./path/to/trained/model.pth
+
+# this repository provides a trained model that may be able to perform the task :)
+python tianshou-pistonball-discrete.py --piston-num 5 --watch-only --watch-episode-num 5 --model-path ./models/pistonball-discrete/best.pth --seed 1
 ```
